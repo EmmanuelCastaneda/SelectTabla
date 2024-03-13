@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import SelectComponent from './components/select';
+import TableComponent from './components/TableComponent';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('5');
+
+  useEffect(() => {
+    setData([
+      { ID:1,name: "Juan Pedro", description: "Se fue a su casas despues de trabajar" },
+      { ID:2,name: "Maria Becerra", description: "Canta bien pero no tanto para que me guste" },
+      { ID:3,name: "Higuain Maradona", description: "Inigualable como la luna" },
+      { ID:4,name:"Daniela Astudillo Paz",description:"Amor a primera viasta"},
+      { ID:5,name:"Restrepo Iguana",description:"Alguien quien su sacrifico fue tan grande como el amor"},
+      {ID:6,name:"Camilo Angel",description:"El mas listo del curso"},
+      {ID:7,name:"Alejando Balverde" ,description:"No se juega bien al futbol"},
+      {ID:8,name:"Rafael Valderrama",description:"Una estrella que duro poco"},
+      {ID:9,name:"Defrauncio Orgalau",description:"Queria ser Italiano pero nacio en LATAM"},
+      {ID:10,name:"Walfrer Mayonesa",description:"Un sabor que no convina tanto"},
+      {ID:11,name:"Samuel Eto",description:"Brillo en el Barcelona tanto como el una estrella"},
+      {ID:12,name:"Fernando Alonso",description:"Gambero Ilusor "},
+      {ID:13,name:"Pepa You",description:"La reyna del baile"},
+      {ID:14,name:"Fererro Rocchel",description:"Tiene un gran corazón"},
+      {ID:15,name:"Julian Arbol",description: "Es muy bueno juegando tenis"},
+      {ID:16,name:"Gafekond Ñorfer",description: "Jogo bonito Brazil"},
+      {ID:17,name:"Deftor Haora",description:"Desructor de planetas"},
+      {ID:18,name:"Fidusuario Tendariano",description: "Conoce todos los secretos"},
+      {ID:19,name:"Asimilia perez",description: "Sabe mucho de todo"},
+      {ID:20,name:"Comoder Casialgo",description: "Este es el comodor"}
+
+    ]);
+  }, []);
+
+  const handleSelectChange = (selectedValue) => {
+    setSelectedOption(selectedValue);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="container">
+      <SelectComponent data={data} handleSelectChange={handleSelectChange} />
+      <TableComponent data={data} selectedOption={selectedOption} />
+    </div>
+  );
 }
 
-export default App
+export default App;
